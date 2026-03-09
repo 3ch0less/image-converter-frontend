@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+* {
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Cascadia Code', monospace;
+}
+
+/* Prevent white flash on iOS Safari overscroll/bounce */
+html,
+body {
+  background: #121212;
+  overflow-x: hidden;
+}
+
+/* iOS Safari momentum scroll fix */
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* minimal range slider */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  background: #333;
+  outline: none;
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 0;
+}
+input[type='range']::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 0;
+  border: none;
+}
