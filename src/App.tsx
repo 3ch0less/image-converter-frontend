@@ -5,7 +5,7 @@ import Stars from './components/Stars'
 import type { FileItem, Format } from './types'
 import { generateId, validateFile } from './utils'
 
-const API_URL = 'https://api.convert.3cho.org/convert'
+const API_URL = 'https://image-converter-backend-production-43c3.up.railway.app/convert'
 
 export default function App() {
   const [files, setFiles] = useState<FileItem[]>([])
