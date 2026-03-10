@@ -1,4 +1,4 @@
-export type Format = 'png' | 'jpg' | 'webp'
+export type Format = 'png' | 'jpg' | 'webp' | 'gif' | 'avif' | 'bmp' | 'tiff' | 'ico'
 
 export type ConversionStatus = 'idle' | 'converting' | 'done' | 'error'
 

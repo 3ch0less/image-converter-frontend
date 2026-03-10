@@ -87,7 +87,7 @@ export default function App() {
           const formData = new FormData()
           formData.append('file', item.file)
           formData.append('targetFormat', fmt)
-          if (fmt === 'jpg' || fmt === 'webp') {
+          if (fmt === 'jpg' || fmt === 'webp' || fmt === 'avif') {
             formData.append('quality', String(q))
           }
 
@@ -148,7 +148,7 @@ export default function App() {
   const idleCount  = files.filter((f) => f.status === 'idle').length
   const doneCount  = files.filter((f) => f.status === 'done').length
   const hasFiles   = files.length > 0
-  const needsQuality = targetFormat === 'jpg' || targetFormat === 'webp'
+  const needsQuality = targetFormat === 'jpg' || targetFormat === 'webp' || targetFormat === 'avif'
 
   return (
     <div className="relative min-h-screen bg-[#121212] text-white">
@@ -164,7 +164,7 @@ export default function App() {
           <p className="text-xs text-[#444] mb-6">/ IMG_CONVERT</p>
           <h1 className="text-xl text-white mb-2">image converter</h1>
           <p className="text-sm text-[#555]">
-            png · jpg · webp &nbsp;—&nbsp; batch conversion
+            png · jpg · webp · gif · avif · bmp · tiff · ico &nbsp;—&nbsp; batch conversion
           </p>
         </div>
 
@@ -185,8 +185,8 @@ export default function App() {
             {/* output format */}
             <div className="flex items-start gap-8 sm:items-center flex-wrap">
               <span className="text-xs text-[#555] w-28 shrink-0">output format</span>
-              <div className="flex gap-2">
-                {(['png', 'jpg', 'webp'] as Format[]).map((fmt) => (
+              <div className="flex flex-wrap gap-2">
+                {(['png', 'jpg', 'webp', 'gif', 'avif', 'bmp', 'tiff', 'ico'] as Format[]).map((fmt) => (
                   <button
                     key={fmt}
                     onClick={() => setTargetFormat(fmt)}
