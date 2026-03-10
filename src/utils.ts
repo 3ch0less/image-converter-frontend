@@ -10,14 +10,13 @@ export function generateId(): string {
 
 const SUPPORTED = [
   'image/png', 'image/jpeg', 'image/webp',
-  'image/gif', 'image/avif', 'image/bmp',
-  'image/tiff', 'image/x-icon', 'image/vnd.microsoft.icon',
+  'image/gif', 'image/tiff', 'image/avif',
 ]
 export const MAX_SIZE = 10 * 1024 * 1024 // 10 MB
 
 export function validateFile(file: File): string | null {
   if (!SUPPORTED.includes(file.type)) {
-    return `Unsupported format: ${file.type || 'unknown'}. Use PNG, JPG, WEBP, GIF, AVIF, BMP, TIFF, or ICO.`
+    return `Unsupported format: ${file.type || 'unknown'}. Use PNG, JPG, WEBP, GIF, TIFF, or AVIF.`
   }
   if (file.size > MAX_SIZE) {
     return `File too large (${formatBytes(file.size)}). Max 10 MB.`

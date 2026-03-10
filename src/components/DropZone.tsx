@@ -42,7 +42,7 @@ export default function DropZone({ onFiles, disabled }: DropZoneProps) {
         ref={inputRef}
         type="file"
         multiple
-        accept="image/png,image/jpeg,image/webp,image/gif,image/avif,image/bmp,image/tiff,.tif,.tiff,image/x-icon,.ico"
+        accept="image/png,image/jpeg,image/webp,image/gif,image/tiff,.tif,.tiff,image/avif"
         className="hidden"
         onChange={handleChange}
       />
@@ -59,7 +59,7 @@ export default function DropZone({ onFiles, disabled }: DropZoneProps) {
           drop images here or{' '}
           <span className="text-white underline underline-offset-4 decoration-[#444]">browse</span>
         </p>
-        <p className="text-xs text-[#444]">png · jpg · webp · gif · avif · bmp · tiff · ico · max 10mb</p>
+        <p className="text-xs text-[#444]">png · jpg · webp · gif · tiff · avif · max 10mb</p>
       </div>
     </div>
   )
