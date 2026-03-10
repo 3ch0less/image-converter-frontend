@@ -7,16 +7,17 @@ interface FileCardProps {
   onRemove: (id: string) => void
   onCancel: (id: string) => void
   onDownload: (id: string) => void
+  onEdit: (id: string) => void
 }
 
 const statusMap = {
-  idle:       { symbol: '·',  color: '#444',  label: 'ready' },
-  converting: { symbol: '⟳',  color: '#888',  label: 'converting' },
-  done:       { symbol: '✓',  color: '#fff',  label: 'done' },
+  idle:       { symbol: '·',  color: '#444',    label: 'ready' },
+  converting: { symbol: '⟳',  color: '#888',    label: 'converting' },
+  done:       { symbol: '✓',  color: '#fff',    label: 'done' },
   error:      { symbol: '✗',  color: '#c0392b', label: 'error' },
 }
 
-export default function FileCard({ item, targetFormat, onRemove, onCancel, onDownload }: FileCardProps) {
+export default function FileCard({ item, targetFormat, onRemove, onCancel, onDownload, onEdit }: FileCardProps) {
   const { id, file, preview, status, error, convertedBlob, convertedSize } = item
   const st = statusMap[status]
   const savings = convertedSize != null
@@ -37,10 +38,7 @@ export default function FileCard({ item, targetFormat, onRemove, onCancel, onDow
 
       {/* Info */}
       <div className="min-w-0 flex-1 space-y-1">
-        {/* filename */}
         <p className="truncate text-xs text-white" title={file.name}>{file.name}</p>
-
-        {/* size stats */}
         <div className="flex items-center gap-3 text-xs text-[#555]">
           <span>{formatBytes(file.size)}</span>
           {convertedSize != null && (
@@ -49,14 +47,10 @@ export default function FileCard({ item, targetFormat, onRemove, onCancel, onDow
               <span className={Number(savings) > 0 ? 'text-[#888]' : 'text-[#555]'}>
                 {formatBytes(convertedSize)}
               </span>
-              {Number(savings) > 0 && (
-                <span className="text-[#555]">−{savings}%</span>
-              )}
+              {Number(savings) > 0 && <span className="text-[#555]">−{savings}%</span>}
             </>
           )}
         </div>
-
-        {/* status */}
         <div className="flex items-center gap-1.5">
           <span style={{ color: st.color }} className="text-xs tabular-nums">{st.symbol}</span>
           <span className="text-xs" style={{ color: st.color }}>
@@ -73,6 +67,14 @@ export default function FileCard({ item, targetFormat, onRemove, onCancel, onDow
             className="text-xs text-[#888] border border-[#2a2a2a] px-2.5 py-1 hover:text-white hover:border-[#444] transition-colors"
           >
             ↓ .{targetFormat}
+          </button>
+        )}
+        {(status === 'idle' || status === 'done' || status === 'error') && (
+          <button
+            onClick={() => onEdit(id)}
+            className="text-xs text-[#333] border border-[#1a1a1a] px-2.5 py-1 hover:text-[#888] hover:border-[#2a2a2a] transition-colors"
+          >
+            edit
           </button>
         )}
         {status === 'converting' && (
